@@ -1,0 +1,29 @@
+{
+  "name": "blogai",
+  "version": "1.0.0",
+  "description": "a blog that writes articles every hour and feeds itself on themes defined in advance ",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sessihounnou/blogai.git"
+  },
+  "keywords": [
+    "openai",
+    "GPT-3",
+    "davenci",
+    "AI",
+    "node",
+    "ai",
+    "js",
+    "ai"
+  ],
+  "author": "Sessi Cedric HOUNNOU",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sessihounnou/blogai/issues"
+  },
+  "homepage": "https://github.com/sessihounnou/blogai#readme"
+}
