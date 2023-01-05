@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/sessihounnou/blogai/issues"
   },
-  "homepage": "https://github.com/sessihounnou/blogai#readme"
+  "homepage": "https://github.com/sessihounnou/blogai#readme",
+  "dependencies": {
+    "prisma": "^4.8.0"
+  }
 }
