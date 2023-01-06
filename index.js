@@ -39,7 +39,8 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
-createArticle()
+
+response()
 app.listen(PORT, HOST, () => {
   console.log(`Running on http://${HOST}:${PORT}`);
 });
