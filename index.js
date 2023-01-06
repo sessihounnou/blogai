@@ -3,7 +3,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mysql = require("mysql");
 const cors = require("cors");
+const cron = require('cron');
+//import controllers
 const { createArticle } = require("./controllers/article.controller");
+const {generateText} = require("./controllers/openai.controller")
 // Constants
 const PORT = process.env.PORT || 8080;
 const HOST = "localhost";
@@ -36,11 +39,16 @@ app.use((req, res, next) => {
   next();
 });
 
+
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
+const job = new cron.CronJob('*/30 * * * * *', function() {
+  generateText("un autre paragraphe de parole qui font chaut au coeur");
 
-response()
+});
+job.start();
+
 app.listen(PORT, HOST, () => {
   console.log(`Running on http://${HOST}:${PORT}`);
 });
