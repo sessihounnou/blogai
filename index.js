@@ -43,8 +43,12 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
-const job = new cron.CronJob('*/30 * * * * *', function() {
-  generateText("un autre paragraphe de parole qui font chaut au coeur");
+const job = new cron.CronJob('30 * * * * *', function() {
+  generateText("comment changer mon clavier qwerty en clavier azerty sur mon macbook").then(
+    (response)=>{
+      createArticle('sujet',response )
+    }
+  );
 
 });
 job.start();

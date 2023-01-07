@@ -11,5 +11,6 @@ exports.generateText = async (prompt)=>{
         max_tokens: 4000,
         temperature: 0,
       });
-    console.log(res.data.choices[0].text);
+    console.log(res.data.choices[0]);
+    return res.data.choices[0].text
 }
