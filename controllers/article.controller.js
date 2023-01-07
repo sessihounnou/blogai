@@ -40,6 +40,17 @@ exports.createArticle = async(title_ai,content_ai) =>{
         }
     )
 } 
+exports.createTheme = async(title_ai) =>{
+  const createTheme = await prisma.theme.create({
+      data : {
+          title : title_ai
+      },
+  }).then(
+    ()=>{
+      return createTheme;
+    }
+  )
+} 
 
 
 // async function generateText() {

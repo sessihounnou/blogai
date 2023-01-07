@@ -44,15 +44,23 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 const job = new cron.CronJob('30 * * * * *', function() {
-  generateText("comment changer mon clavier qwerty en clavier azerty sur mon macbook").then(
+  generateText("utiliser gt3 pour generer du contenu est ce du plagiat ").then(
     (response)=>{
       createArticle('sujet',response )
     }
   );
 
 });
-job.start();
+const job_theme = new cron.CronJob('*/30 * * * * *', function() {
+  generateText("Propose moi Une idée de projet iot ").then(
+    (response)=>{
+      createTheme(response )
+    }
+  );
 
+});
+job.start();
+job_theme.start();
 app.listen(PORT, HOST, () => {
   console.log(`Running on http://${HOST}:${PORT}`);
 });
