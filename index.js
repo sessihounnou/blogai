@@ -44,23 +44,24 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 const job = new cron.CronJob('30 * * * * *', function() {
-  generateText("utiliser gt3 pour generer du contenu est ce du plagiat ").then(
+  // generateText("utiliser gt3 pour generer du contenu est ce du plagiat ").then(
+    generateText("qui a gagner la coupe du monde 2022").then(
     (response)=>{
       createArticle('sujet',response )
     }
   );
 
 });
-const job_theme = new cron.CronJob('*/30 * * * * *', function() {
-  generateText("Propose moi Une idée de projet iot ").then(
-    (response)=>{
-      createTheme(response )
-    }
-  );
+// const job_theme = new cron.CronJob('*/30 * * * * *', function() {
+//   generateText("Propose moi Une idée de projet iot ").then(
+//     (response)=>{
+//       createTheme(response )
+//     }
+//   );
 
-});
+// });
 job.start();
-job_theme.start();
+// job_theme.start();
 app.listen(PORT, HOST, () => {
   console.log(`Running on http://${HOST}:${PORT}`);
 });
