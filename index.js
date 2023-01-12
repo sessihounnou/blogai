@@ -43,11 +43,14 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
+let sbj = "storyTelling"
+// let sujet = "puis je avoir une petite storytelling très originale faisant appel aux émotions de l'utilisateur sur un systeme d'information des zones de polution et des taux de pollution ainsi que les particules présente dans l'aire. il faut que l'histoire soit lisible du début à la fin mais aussi de la fin au début"
+let sujet ="puis je avoir une petite storytelling très originale faisant appel aux émotions sur un système de  collecte d'informations liées aux émissions des véhicules moteurs afin de réduire l'expansion de la pollution atmosphérique ? mais je veux que l'information soit lissible du debut à la fin et inverement" 
 const job = new cron.CronJob('30 * * * * *', function() {
   // generateText("utiliser gt3 pour generer du contenu est ce du plagiat ").then(
-    generateText("qui a gagner la coupe du monde 2022").then(
+    generateText(sujet).then(
     (response)=>{
-      createArticle('sujet',response )
+      createArticle(sbj,response )
     }
   );
 
