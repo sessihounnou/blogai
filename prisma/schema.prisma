@@ -16,8 +16,10 @@ model Theme {
 
 model Article {
   id      Int            @id @default(autoincrement())
+  status  Boolean
   title   String
   content String         @db.Text
+  image  String
   theme   ThemeArticle[]
 }
 
