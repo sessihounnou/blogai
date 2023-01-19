@@ -7,7 +7,7 @@ const cron = require('cron');
 //import controllers
 const { createArticle } = require("./controllers/article.controller");
 const {generateText} = require("./controllers/openai.controller")
-const { handle }= require("./controllers/data_handle")
+const { article_getAll , article_create ,article_update ,article_delete }= require("./controllers/data_handle")
 
 // Constants
 const PORT = process.env.PORT || 8080;
@@ -17,13 +17,13 @@ const HOST = "localhost";
 const app = express();
 
 /******/
-app.get("/articles", handle.getAll);
+app.get("/articles", article_getAll);
 
-app.post("/articles", handle.create);
+app.post("/articles", article_create);
 
-app.put("/articles/:id", handle.update);
+app.put("/articles/:id", article_update);
 
-app.delete("/articles/:id", handle.delete);
+app.delete("/articles/:id", article_delete);
 /******/
 
 // Make sure you place body-parser before your CRUD handlers!
