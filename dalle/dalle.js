@@ -2,12 +2,12 @@ import { Configuration, OpenAIApi } from "openai";
 import { writeFileSync } from "fs";
 
 const configuration = new Configuration({
-    apiKey: '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'
+    apiKey: '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'
 });
 
 const openai = new OpenAIApi(configuration);
 
-const prompt = 'naruto qui fait du skate sur namek'
+const prompt = 'une pomme'
 
 const result = await openai.createImage({
     prompt,
