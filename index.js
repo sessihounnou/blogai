@@ -16,11 +16,6 @@ const HOST = "localhost";
 // App
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use(express.json());
-
-app.use(express.urlencoded({ extended: true }));
-
 app.use(
   cors({
     origin: true,
@@ -38,7 +33,27 @@ app.put("/articles/:id", article_update);
 app.delete("/articles/:id", article_delete);
 /******/
 
+// Make sure you place body-parser before your CRUD handlers!
 
+
+
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, PATCH, OPTIONS"
+  );
+  next();
+});
+
+
+app.use(express.json());
+
+app.use(express.urlencoded({ extended: true }));
 let sbj = "storyTelling"
 // let sujet = "puis je avoir une petite storytelling très originale faisant appel aux émotions de l'utilisateur sur un systeme d'information des zones de polution et des taux de pollution ainsi que les particules présente dans l'aire. il faut que l'histoire soit lisible du début à la fin mais aussi de la fin au début"
 let sujet ="comment acceder au service de la carte sim grace a une esp32"
