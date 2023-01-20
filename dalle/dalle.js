@@ -1,9 +1,32 @@
 import { Configuration, OpenAIApi } from "openai";
 import { createReadStream, writeFileSync } from "fs";
+import ig from "ig-scraper";
+//const ig = require('ig-scraper');
+import Client from 'instagram-web-api';
+
+const client = new Client();
+
+async function postImage(user, mdp) {
+    client.session.login({
+      username: user,
+      password: mdp
+    }).then(() => {
+      const image = fs.readFileSync('./img/image.png');
+
+      return client.media.upload({
+        file: image,
+        caption: 'Generated'
+      });
+    }).then((media) => {
+      console.log(`Image téléchargée avec succès avec l'ID ${media.id}`);
+    }).catch((err) => {
+      console.log(`Erreur: ${err}`);
+    });
+}
 
 async function generateImage(prompt) {
     const configuration = new Configuration({
-        apiKey: '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'
+        apiKey: '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'
     });
 
     const openai = new OpenAIApi(configuration);
@@ -76,4 +99,5 @@ async function editImage (src, mask) {
     writeFileSync(`./img/${Date.now()}.png`, buffer);
 }
 
-generateImage("Dark Vador dans un champ de rose");
+generateImage("un gay pendant la fin du monde");
+//postImage("", "");
