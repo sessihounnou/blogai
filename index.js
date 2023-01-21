@@ -73,7 +73,7 @@ app.use(express.urlencoded({ extended: true }));
 
 //Routes
 /******/
-app.get("/articles", article_getAll);
+app.get("/articles/:id", article_getAll);
 
 app.post("/articles", article_create);
 
