@@ -20,8 +20,8 @@ async function createArticle(data) {
 
 async function getArticles(pageNumber) {
   const articles = await prisma.article.findMany({
-    take: parseInt(10),
-    skip: pageNumber * 10
+    take: parseInt(9),
+    skip: pageNumber * 9
   });
   return articles;
 }
