@@ -28,12 +28,14 @@ connection.end();*/
 //var mysql = require('mysql');
 import mysql from 'mysql';
 
-var con = mysql.createConnection({
+var con = mysql.createConnection(
+  {
   host: "localhost",
   user: "toss",
   password: "Bl@ckmamba24",
   database: "dalle"
-});
+  }
+);
 
 con.connect(function(err) {
   if (err) throw err;
