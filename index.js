@@ -7,12 +7,13 @@ const cron = require('cron');
 //import controllers
 const { createArticle } = require("./controllers/article.controller");
 const {generateText} = require("./controllers/openai.controller")
+const {generateImg} =require("./dalle/dalle")
 const { article_getAll , article_create ,article_update ,article_delete }= require("./controllers/data_handle")
 
 // Constants
 const PORT = process.env.PORT || 8080;
 const HOST = "localhost";
-
+const openAiKey = process.env.OPENkAI_KEY
 // App
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -45,6 +46,8 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
+//generate dallee img
+generateImg('des usines qui poluent' , openAiKey)
 
 // // cron 
 // let sbj = "storyTelling"
