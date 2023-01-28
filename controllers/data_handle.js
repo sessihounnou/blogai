@@ -18,8 +18,11 @@ async function createArticle(data) {
   return newArticle;
 }
 
-async function getArticles() {
-  const articles = await prisma.article.findMany();
+async function getArticles(pageNumber) {
+  const articles = await prisma.article.findMany({
+    take: parseInt(9),
+    skip: pageNumber * 9
+  });
   return articles;
 }
 
@@ -49,7 +52,7 @@ exports.article_create = async (req, res) =>  {
 
 exports.article_getAll = async (req, res) =>  {
   try {
-    const articles = await getArticles();
+    const articles = await getArticles(req.params.id);
     res.status(200).json(articles);
   } catch (error) {
     res.status(500).json({ error: error.message });

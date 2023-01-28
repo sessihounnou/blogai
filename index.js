@@ -15,21 +15,7 @@ const HOST = "localhost";
 
 // App
 const app = express();
-
-/******/
-app.get("/articles", article_getAll);
-
-app.post("/articles", article_create);
-
-app.put("/articles/:id", article_update);
-
-app.delete("/articles/:id", article_delete);
-/******/
-
-// Make sure you place body-parser before your CRUD handlers!
 app.use(bodyParser.urlencoded({ extended: true }));
-
-
 app.use(
   cors({
     origin: true,
@@ -37,6 +23,10 @@ app.use(
     credentials: true,
   })
 );
+
+// Make sure you place body-parser before your CRUD handlers!
+
+
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -55,28 +45,44 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
-let sbj = "storyTelling"
-// let sujet = "puis je avoir une petite storytelling très originale faisant appel aux émotions de l'utilisateur sur un systeme d'information des zones de polution et des taux de pollution ainsi que les particules présente dans l'aire. il faut que l'histoire soit lisible du début à la fin mais aussi de la fin au début"
-let sujet ="comment acceder au service de la carte sim grace a une esp32"
-const job = new cron.CronJob('30 * * * * *', function() {
-  // generateText("utiliser gt3 pour generer du contenu est ce du plagiat ").then(
-    generateText(sujet).then(
-    (response)=>{
-      createArticle(sbj,response )
-    }
-  );
 
-});
-// const job_theme = new cron.CronJob('*/30 * * * * *', function() {
-//   generateText("Propose moi Une idée de projet iot ").then(
+// // cron 
+// let sbj = "storyTelling"
+// let sujet ="comment acceder au service de la carte sim grace a une esp32"
+// const job = new cron.CronJob('30 * * * * *', function() {
+//   // generateText("utiliser gt3 pour generer du contenu est ce du plagiat ").then(
+//     generateText(sujet).then(
 //     (response)=>{
-//       createTheme(response )
+//       createArticle(sbj,response )
 //     }
 //   );
 
 // });
-job.start();
-// job_theme.start();
+// // const job_theme = new cron.CronJob('*/30 * * * * *', function() {
+// //   generateText("Propose moi Une idée de projet iot ").then(
+// //     (response)=>{
+// //       createTheme(response )
+// //     }
+// //   );
+
+// // });
+// job.start();
+// // job_theme.start();
+
+
+
+//Routes
+/******/
+app.get("/articles/:id", article_getAll);
+
+app.post("/articles", article_create);
+
+app.put("/articles/:id", article_update);
+
+app.delete("/articles/:id", article_delete);
+/******/
+
+
 app.listen(PORT, HOST, () => {
   console.log(`Running on http://${HOST}:${PORT}`);
 });
