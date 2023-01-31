@@ -1,3 +1,5 @@
+const fs = require('fs');
+const axios = require('axios');
 const { Configuration, OpenAIApi } = require("openai");
 exports.generateImg = async(prompt, apikey) =>{
 const configuration = new Configuration({
@@ -17,24 +19,14 @@ const result = await openai.createImage({
 }).then((result)=>{
     const url = result.data.data[0].url;
     console.log(url);
-    return url
-    // downloadFile(url,'./img/')
-
-    // axios.get(url, {responseType: 'blob'}).then(response => {
-    //     const blob =url.blob();
-    //     const buffer = async()=>{
-    //         return Buffer.from( await blob.arrayBuffer() )
-    //     }
-    // writeFileSync(`./img/${Date.now()}.png`, buffer);   
-
-    // });
+    axios.get(url, { responseType: 'stream' }).then(response => 
+        {
+            response.data.pipe(fs.createWriteStream('./ressources/assets/'+`${Date.now()}.png`))
+        });
+}).then(()=>{
+    console.log("success");
+    return "success"
 }).catch((error)=>{
 console.log(error);
 })
 }
-
-
-// const imgResult = await fetch(url);
-// const blob = await imgResult.blob();
-// const buffer = Buffer.from( await blob.arrayBuffer() )
-// writeFileSync(`./img/${Date.now()}.png`, buffer);
