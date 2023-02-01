@@ -4,7 +4,8 @@ const { PrismaClient } = require('@prisma/client');
 const  prisma = new PrismaClient()
 
 const { Configuration, OpenAIApi } = require("openai");
-exports.generateImg = async(prompt, apikey) =>{
+// function generate img 
+exports.generateImg = async(prompt, apikey , themeid) =>{
 const configuration = new Configuration({
     apiKey: apikey
 });
@@ -26,17 +27,18 @@ const result = await openai.createImage({
         {
             response.data.pipe(fs.createWriteStream('./ressources/assets/'+name))
         });
-    createImg(name)
+    createImg(name,themeid)
 
-}).then((response)=>{
+}).then(()=>{
     console.log("success");
-    console.log(response);
     return "success"
 }).catch((error)=>{
 console.log(error);
 })
 }
-createImg = async(name) =>{
+createImg = async(name ,themeid) =>{
+    console.log("themeid");
+    console.log(themeid);
     const createimg = await prisma.image.create({
         data : {
             name : name,
@@ -44,7 +46,7 @@ createImg = async(name) =>{
     }).then(
         async(createimg)=>{
             console.log('img has been create ');
-            themeid=1;
+            console.log(themeid);
             if(themeid){
                 const themearticle = prisma.themeImage.create({
                     data : {
