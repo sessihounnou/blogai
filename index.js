@@ -12,7 +12,7 @@ const { article_getAll , article_create ,article_update ,article_delete }= requi
 // Constants
 const PORT = process.env.PORT || 8080;
 const HOST = "localhost";
-const openAiKey = "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"
+const openAiKey = "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"
 
 // App
 const app = express();
@@ -36,7 +36,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //generate dallee img
-generateImg('des usines qui poluent' , openAiKey)
+generateImg('des usines qui poluent' , openAiKey )
 
 
 //Routes

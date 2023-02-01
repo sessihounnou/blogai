@@ -26,7 +26,7 @@ model Article {
 }
 model Image {
   id       Int            @id @default(autoincrement())
-  url    String
+  name    String
   theme   ThemeImage[]
 }
 model ThemeArticle {
@@ -41,6 +41,6 @@ model ThemeImage {
   id        Int     @id @default(autoincrement())
   themeId   Int     @unique
   theme     Theme   @relation(fields: [themeId], references: [id])
-  imageId Int       @unique
-  image   Image     @relation(fields: [imageId], references: [id])
+  imageId   Int       @unique
+  image     Image     @relation(fields: [imageId], references: [id])
 }
