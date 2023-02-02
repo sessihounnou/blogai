@@ -20,11 +20,13 @@ console.log(response);
 // const API_KEY = process.env.API_KEY;
 
 
-exports.createArticle = async(title_ai,content_ai) =>{
+exports.createArticle = async(title_ai,content_ai,image_name) =>{
     const createArticle = await prisma.article.create({
         data : {
             title : title_ai,
-            content: content_ai
+            content: content_ai,
+            image : image_name,
+            status:true
         },
     }).then(
         async(createArticle)=>{

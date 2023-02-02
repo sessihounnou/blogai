@@ -59,6 +59,15 @@ exports.article_getAll = async (req, res) =>  {
   }
 }
 
+exports.article_getAll = async (req, res) =>  {
+  try {
+    const articles = await getArticles(req.params.id);
+    res.status(200).json(articles);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+
 exports.article_update = async (req, res) =>  {
   try {
     const updatedArticle = await updateArticleStatus(req.body.id);
