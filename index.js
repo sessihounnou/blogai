@@ -6,11 +6,11 @@ const cors = require("cors");
 const cron = require('cron');
 //import controllers
 const { createArticle } = require("./controllers/article.controller");
-const {generateText} = require("./controllers/openai.controller")
-const { article_getAll , article_create ,article_update ,article_delete }= require("./controllers/data_handle")
+const {generateText} = require("./controllers/openai.controller");
+const { generate_text,article_getAll , article_create ,article_update ,article_delete }= require("./controllers/data_handle")
 
 // Constants
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8090;
 const HOST = "localhost";
 
 // App
@@ -45,7 +45,6 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
-
 // // cron 
 // let sbj = "storyTelling"
 // let sujet ="comment acceder au service de la carte sim grace a une esp32"
@@ -80,6 +79,8 @@ app.post("/articles", article_create);
 app.put("/articles/:id", article_update);
 
 app.delete("/articles/:id", article_delete);
+
+app.post("/generate", generate_text);
 /******/
 
 
