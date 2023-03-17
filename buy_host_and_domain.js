@@ -1,8 +1,9 @@
 const https = require('https');
 const axios = require('axios');
 
+/*************************************Domain purchase**********************************************/
 const httpsAgent = new https.Agent({
-    rejectUnauthorized: false, // ignore self-signed certificate
+    rejectUnauthorized: false,
   });
 
 const xShopperId = 'your_shopper_id_here';
@@ -107,3 +108,28 @@ axios.post('https://api.ote-godaddy.com/v1/domains/purchase', data, {httpsAgent}
 .catch(error => {
   console.log(error);
 });
+
+/*****************************************Host purchase************************************************/
+
+const apiKey = '3mM44Ucgmpepr3_PkfEQz6vYcnnXLBEQdM7Bf';
+
+const hostData = {
+  name: 'example.com',
+  plan: 'ULTIMATE',
+  duration: 12,
+};
+
+const headers = {
+  Authorization: `sso-key ${apiKey}`,
+  'Content-Type': 'application/json',
+};
+
+axios.post('https://api.ote-godaddy.com/v1/cart/hosting', hostData, { headers })
+  .then(response => {
+    console.log('Host acheté avec succès !');
+    console.log(response.data);
+  })
+  .catch(error => {
+    console.error('Erreur lors de l\'achat du host :');
+    console.error(error.response.data);
+  });
