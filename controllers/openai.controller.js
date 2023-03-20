@@ -1,7 +1,7 @@
 const { createArticle } = require("./article.controller");
 const { Configuration, OpenAIApi } = require("openai");
 const configuration = new Configuration({
-    apiKey: "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",
+  apiKey: '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',
   });
 const openai = new OpenAIApi(configuration);
 exports.generateText = async (prompt)=>{

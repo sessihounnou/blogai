@@ -4,11 +4,10 @@ const bodyParser = require("body-parser");
 const mysql = require("mysql");
 const cors = require("cors");
 const cron = require('cron');
-const {generateText} = require("./controllers/openai.controller")
+//import controllers
 const { createArticle } = require("./controllers/article.controller");
-// const { autoarticle } = require("./controllers/openai.controller");
-const { generateImg } = require("./controllers/dalle2.controller");
-const { article_getAll, article_create, article_update, article_delete } = require("./controllers/data_handle");
+const {generateText} = require("./controllers/openai.controller");
+const { generate_text,article_getAll , article_create ,article_update ,article_delete }= require("./controllers/data_handle")
 
 // Constants
 const PORT = process.env.PORT || 8090;
