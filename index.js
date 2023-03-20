@@ -6,12 +6,12 @@ const cors = require("cors");
 const cron = require('cron');
 const {generateText} = require("./controllers/openai.controller")
 const { createArticle } = require("./controllers/article.controller");
-const {autoarticle} = require("./controllers/openai.controller")
-const {generateImg} = require("./controllers/dalle2.controller")
-const { article_getAll , article_create ,article_update ,article_delete }= require("./controllers/data_handle")
+// const { autoarticle } = require("./controllers/openai.controller");
+const { generateImg } = require("./controllers/dalle2.controller");
+const { article_getAll, article_create, article_update, article_delete } = require("./controllers/data_handle");
 
 // Constants
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8090;
 const HOST = "localhost";
 const openAiKey = "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"
 
@@ -39,7 +39,6 @@ app.use(express.urlencoded({ extended: true }));
 
 //generate dallee img
 // generateImg('des usines qui poluent' , openAiKey , 1)
-
 
 const create_funny = async(req,res) => {
   // console.log(req.body.prompt);
@@ -73,6 +72,8 @@ app.post("/search", create_funny);
 app.put("/articles/:id", article_update);
 
 app.delete("/articles/:id", article_delete);
+
+app.post("/generate", generate_text);
 /******/
 
 

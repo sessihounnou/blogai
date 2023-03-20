@@ -2,6 +2,7 @@ const express = require("express");
 const { PrismaClient } = require('@prisma/client');
 const  prisma = new PrismaClient();
 const router = express.Router();
+const {generateText} = require("./openai.controller")
 
 async function createArticle(data) {
   const newArticle = await prisma.article.create({
@@ -41,6 +42,15 @@ async function deleteArticle(id) {
   return deletedArticle;
 }
 
+exports.generate_text = async (req, res) =>  {
+  try {
+    console.log(req.body.prompt);
+    const newArticle = await generateText(req.body.prompt);
+    res.status(201).json(newArticle);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
 exports.article_create = async (req, res) =>  {
   try {
     const newArticle = await createArticle(req.body);
